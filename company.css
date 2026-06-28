@@ -1,0 +1,129 @@
+/* ページヒーロー */
+.page-hero {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--dark2) 0%, #0f3460 100%);
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.3);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.page-hero-content .section-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-hero-content h1 {
+  color: var(--white);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+/* 会社概要テーブル */
+.company-section { background: var(--white); }
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 64px;
+  font-size: .97rem;
+}
+
+.company-table th,
+.company-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  text-align: left;
+}
+
+.company-table th {
+  width: 200px;
+  color: var(--dark);
+  font-weight: 700;
+  background: #f9f7f4;
+  white-space: nowrap;
+}
+
+.company-table td {
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.company-table td a {
+  color: var(--gold);
+  font-weight: 600;
+  transition: color .2s;
+}
+
+.company-table td a:hover { color: var(--dark); }
+
+.company-table tr:first-child th,
+.company-table tr:first-child td {
+  border-top: 2px solid var(--gold);
+}
+
+/* アクセスマップ */
+.map-block { margin-top: 16px; }
+
+.map-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+
+.map-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: .92rem;
+  margin-bottom: 20px;
+}
+
+.map-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* アクティブナビ */
+.nav-active {
+  color: var(--gold-light) !important;
+}
+
+.nav-active::after {
+  transform: scaleX(1) !important;
+}
+
+/* レスポンシブ */
+@media (max-width: 600px) {
+  .company-table th {
+    width: 110px;
+    font-size: .85rem;
+    padding: 14px 12px;
+  }
+  .company-table td {
+    font-size: .88rem;
+    padding: 14px 12px;
+  }
+}
