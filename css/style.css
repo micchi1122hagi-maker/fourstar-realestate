@@ -426,8 +426,14 @@ a:hover { text-decoration: underline; }
 }
 .form textarea { min-height: 150px; resize: vertical; }
 .form .privacy { font-size: 13px; color: var(--muted); display:flex; gap:8px; align-items:flex-start; }
+.form .privacy input { width: auto; flex: none; margin-top: 3px; }
 .form .note { font-size: 13px; color: var(--muted); }
 .form .submit { text-align: center; margin-top: 6px; }
+/* 送信結果のメッセージ（js/main.js が表示）*/
+.form .form-status { margin: 14px 0 0; padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 700; text-align: left; }
+.form .form-status.is-ok { background: #e8f5ec; color: #1f6b3a; }
+.form .form-status.is-error { background: #fdecec; color: #b42318; }
+.form button:disabled { opacity: .6; cursor: wait; }
 
 /* =========================================================================
    フッター

@@ -95,4 +95,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     targets.forEach(function (el) { io.observe(el); });
   }
+
+  /* --- お問い合わせフォームの送信（Formspree・ページを移動せずに送る）---
+     ※送信先は contact.html の <form action="..."> です。ここは触らなくてOK。*/
+  var form = document.getElementById('contact-form');
+  if (form && window.fetch && window.FormData) {
+    var btn = form.querySelector('button[type="submit"]');
+    var status = form.querySelector('.form-status');
+    var btnText = btn.textContent;
+
+    function showStatus(type, msg) {
+      status.hidden = false;
+      status.className = 'form-status is-' + type;
+      status.textContent = msg;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = '送信中…';
+      status.hidden = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.reset();
+        showStatus('ok', 'お問い合わせを送信しました。担当者より2営業日以内にご連絡いたします。');
+      }).catch(function () {
+        showStatus('error', '送信できませんでした。お手数ですが、お電話（086-250-5440）またはメール（fourstar.0303@gmail.com）でお問い合わせください。');
+      }).then(function () {
+        btn.disabled = false;
+        btn.textContent = btnText;
+      });
+    });
+  }
 });

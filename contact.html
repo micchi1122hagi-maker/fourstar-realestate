@@ -2,13 +2,12 @@
 <!-- =========================================================================
      フォースター不動産 お問い合わせページ（contact.html）
      -------------------------------------------------------------------------
-     ★このフォームは「FormSubmit（フォームサブミット）」という無料サービスで、
-       送信内容を fourstar.0303@gmail.com にメールで転送しています（登録不要）。
-       ・サイト公開後、最初に1回テスト送信すると、上記アドレスに
-         「Action Required: Activate FormSubmit」というメールが届きます。
-         その中の「Activate Form」ボタンを押すと、以降の送信が届くようになります。
-       ・転送先を変えたいときは、下の <form ...> の action="..." の
-         メールアドレス部分を書き換えてください（変更後は再度有効化が必要です）。
+     ★このフォームは「Formspree（フォームスプリー）」という無料サービスで、
+       送信内容をメールで受け取ります（無料プランは月50件まで）。
+       ・Formspreeに登録してフォームを作ると「フォームID」が発行されます。
+         下の <form ...> の action="..." の最後の部分（今は mwllqerz）がそのIDです。
+       ・送信は js/main.js がページを移動せずに行い、結果をボタンの下に表示します。
+       ・届くメールアドレスは Formspree の管理画面で設定します。
      ========================================================================= -->
 <html lang="ja">
 <head>
@@ -79,8 +78,10 @@
 
         <!-- ---- 左：入力フォーム ---- -->
         <div>
-          <!-- ★送信内容は action のメールアドレス宛に転送されます（FormSubmit）-->
-          <form class="form" action="https://formsubmit.co/fourstar.0303@gmail.com" method="POST">
+          <!-- ★送信内容は Formspree 経由でメールに届きます。
+                action の最後の「mwllqerz」が Formspree のフォームIDです（作り直したらここを書き換え）。
+                送信は js/main.js がページを移動せずに行い、結果をフォームの下に表示します。-->
+          <form class="form" id="contact-form" action="https://formspree.io/f/mwllqerz" method="POST">
 
             <div class="field">
               <label>お名前 <span class="req">必須</span></label>
@@ -125,19 +126,17 @@
               <span>個人情報の取り扱いに同意のうえ送信します。いただいた情報はお問い合わせ対応の目的にのみ使用します。</span>
             </label>
 
-            <!-- FormSubmitの設定（触らなくてOK）
-                 _subject：届くメールの件名／_template：表形式で見やすく
-                 _captcha：ロボット確認画面を出さない
+            <!-- Formspreeの設定（触らなくてOK）
+                 _subject：届くメールの件名
+                 _gotcha：迷惑メール対策（人には見えない入力欄）
                  ※メール欄の name="email" は、届いたメールに「返信」すると
-                   お客様のアドレス宛になるための名前です。変えないでください。
-                 _honey：迷惑メール対策（人には見えない入力欄）-->
+                   お客様のアドレス宛になるための名前です。変えないでください。-->
             <input type="hidden" name="_subject" value="【HPお問い合わせ】フォースター不動産">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
             <div class="submit">
               <button type="submit" class="btn btn--primary btn--lg">この内容で送信する</button>
+              <p class="form-status" role="status" aria-live="polite" hidden></p>
               <p class="note">※送信ボタンが動かない場合は、お電話・メールでお問い合わせください。</p>
             </div>
           </form>
