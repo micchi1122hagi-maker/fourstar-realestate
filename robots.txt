@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# ★公開ドメインが決まったら、下の REPLACE_DOMAIN を本番URLに置き換えてください
-Sitemap: https://REPLACE_DOMAIN/sitemap.xml
+# ※GitHub Pages（サブフォルダ）では、このファイルはGoogleに読まれません。独自ドメインに切り替えると有効になります
+Sitemap: https://micchi1122hagi-maker.github.io/fourstar-realestate/sitemap.xml
