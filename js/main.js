@@ -116,10 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.textContent = '送信中…';
       status.hidden = true;
 
+      // 項目名が日本語のため、FormData のままだと Formspree が受け付けない → JSON にして送る
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+
       fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         form.reset();
