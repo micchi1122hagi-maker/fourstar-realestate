@@ -691,6 +691,14 @@ a:hover { text-decoration: underline; }
 /* 「該当物件がないとき」やポータル誘導に使う一言 */
 .prop-note { text-align:center; color: var(--muted); font-size: 14px; margin-top: 30px; }
 
+/* トップの新着で「売り物件」「賃貸物件」を分ける小見出し */
+.pickup-sub {
+  display:flex; align-items:center; gap: 14px; margin: 0 0 22px;
+  font-size: 19px; font-weight: 800; color: var(--navy); letter-spacing: .06em;
+}
+.pickup-sub::after { content:""; flex:1; height:1px; background: var(--line); }
+.pickup-sub--rent { margin-top: 56px; }
+
 @media (max-width: 900px) { .prop-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .prop-grid { grid-template-columns: 1fr; } }
 
